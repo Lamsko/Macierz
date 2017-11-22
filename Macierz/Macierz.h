@@ -7,5 +7,10 @@ public:
 	Macierz(const Macierz& m);
 	Macierz(Macierz&& m);
 	~Macierz();
-};
 
+private:
+	int wiersze, kolumny;
+	double **p;
+
+	void alokacja();
+};
