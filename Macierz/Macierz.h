@@ -7,6 +7,7 @@ public:
 	Macierz(const Macierz& m);
 	Macierz(Macierz&& m);
 	~Macierz();
+	Macierz dodaj(Macierz m);
 
 private:
 	int wiersze, kolumny;
