@@ -10,6 +10,7 @@ public:
 
 	Macierz dodaj(Macierz m);
 	Macierz mnoz(Macierz m);
+	Macierz mnozenieSkalar(int x);
 
 	void set();
 	void set(int x, int w, int k);

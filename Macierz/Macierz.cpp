@@ -103,6 +103,18 @@ Macierz Macierz::mnoz(Macierz m)
 	return mw;
 }
 
+Macierz Macierz::mnozenieSkalar(int x)
+{
+	Macierz mw(wiersze, kolumny);
+	for (int i = 0; i < mw.wiersze; i++)
+	{
+		for (int j = 0 ; j < mw.kolumny; j++)
+			mw.p[i][j] = p[i][j] * x;
+	}
+
+	return mw;
+}
+
 
 // Ustawia wszystkie elementy w Macierzy
 void Macierz::set()
@@ -123,7 +135,7 @@ void Macierz::set(int x, int w, int k)
 	if (w > wiersze || k > kolumny || w < 1 || k < 1)
 		cout << "Nie ma elementu o takim adresie w macierzy" << endl;
 	else
-		p[w][k] = x;
+		p[w-1][k-1] = x;
 }
 
 // Zwraca wybrany element macierzy lub -1 jesli nie ma takiego elementu
