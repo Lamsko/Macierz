@@ -24,6 +24,10 @@ Macierz::Macierz(int w, int k) : wiersze(w), kolumny(k)
 }
 
 //konstruktor kopiujacy
+//S³u¿y do inicjacji obiektu klasy Macierz. Konstruktor kopiuj¹cy przyjmuje jako argument referencjê do obiektu z którego ma kopiowaæ. 
+//Konstruktor taki jest wywo³ywany przy inicjacji jednej macierzy drug¹. Wykorzystana jest przekazywanie obiektu przez referencjê,
+//poniewa¿ nie chcemy skopiowaæ argumentu konstruktora, który definiuje kopiowanie. Zastosowanie const jest podytkowane tym, ¿e
+//nie chcemy, aby argument zosta³ zmodyfikowany.
 Macierz::Macierz(const Macierz & m) : wiersze(m.wiersze), kolumny(m.kolumny)
 {
 	alokacja();
@@ -38,12 +42,15 @@ Macierz::Macierz(const Macierz & m) : wiersze(m.wiersze), kolumny(m.kolumny)
 }
 
 //konstruktor przenosz¹cy
+//
 Macierz::Macierz(Macierz && m) : wiersze(m.wiersze), kolumny(m.kolumny)
 {
 	alokacja();
 
-	for (int i = 0; i < wiersze; ++i) {
-		for (int j = 0; j < kolumny; ++j) {
+	for (int i = 0; i < wiersze; ++i) 
+	{
+		for (int j = 0; j < kolumny; ++j) 
+		{
 			p[i][j] = m.p[i][j];
 		}
 	}
