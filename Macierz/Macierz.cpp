@@ -42,18 +42,28 @@ Macierz::Macierz(const Macierz & m) : wiersze(m.wiersze), kolumny(m.kolumny)
 }
 
 //konstruktor przenosz¹cy
-//
+//Przenoszenie jest nieco bardziej skomplikowane ni¿ kopiowanie, poniewa¿ wymaga zrobienia czegoœ z ju¿ istniej¹cymi starymi elementami.
+//Nastêpuje dealokacja starej pamiêci oraz alokacja nowej i przypisanie nowych wartoœci elementom. W ten sposób niepowodujemy wycieków
+//pamiêci oraz unikamy zwalniania pamiêci dwa razy.
 Macierz::Macierz(Macierz && m) : wiersze(m.wiersze), kolumny(m.kolumny)
 {
-	alokacja();
 
-	for (int i = 0; i < wiersze; ++i) 
-	{
-		for (int j = 0; j < kolumny; ++j) 
-		{
+	if (wiersze != m.wiersze || kolumny != m.kolumny) {
+		for (int i = 0; i < wiersze; ++i) {
+			delete[] p[i];
+		}
+		delete[] p;
+
+		wiersze = m.wiersze;
+		kolumny = m.kolumny;		
+	}
+	alokacja();
+	for (int i = 0; i < wiersze; ++i) {
+		for (int j = 0; j < kolumny; ++j) {
 			p[i][j] = m.p[i][j];
 		}
 	}
+
 }
 
 
@@ -115,7 +125,7 @@ Macierz Macierz::mnozenieSkalar(int x)
 	Macierz mw(wiersze, kolumny);
 	for (int i = 0; i < mw.wiersze; i++)
 	{
-		for (int j = 0 ; j < mw.kolumny; j++)
+		for (int j = 0; j < mw.kolumny; j++)
 			mw.p[i][j] = p[i][j] * x;
 	}
 
@@ -142,7 +152,7 @@ void Macierz::set(int x, int w, int k)
 	if (w > wiersze || k > kolumny || w < 1 || k < 1)
 		cout << "Nie ma elementu o takim adresie w macierzy" << endl;
 	else
-		p[w-1][k-1] = x;
+		p[w - 1][k - 1] = x;
 }
 
 // Zwraca wybrany element macierzy lub -1 jesli nie ma takiego elementu
@@ -151,7 +161,7 @@ int Macierz::get(int w, int k)
 	if (w > wiersze || k > kolumny || w < 1 || k < 1)
 		return -1;
 	else
-		return p[w-1][k-1];
+		return p[w - 1][k - 1];
 }
 
 //Drukuje macierz na wyjœcie
