@@ -144,7 +144,7 @@ int Macierz::get(int w, int k)
 	if (w > wiersze || k > kolumny || w < 1 || k < 1)
 		return -1;
 	else
-		return p[w][k];
+		return p[w-1][k-1];
 }
 
 //Drukuje macierz na wyjœcie
