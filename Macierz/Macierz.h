@@ -9,6 +9,12 @@ public:
 	~Macierz();
 	Macierz dodaj(Macierz m);
 
+	void set();
+	void set(int x, int a, int b);
+
+	Macierz get();
+	int get(int a, int b);
+
 private:
 	int wiersze, kolumny;
 	double **p;
