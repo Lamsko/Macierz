@@ -42,10 +42,8 @@ Macierz::Macierz(Macierz && m) : wiersze(m.wiersze), kolumny(m.kolumny)
 {
 	alokacja();
 
-	for (int i = 0; i < wiersze; i++)
-	{
-		for (int j = 0; j < kolumny; j++)
-		{
+	for (int i = 0; i < wiersze; ++i) {
+		for (int j = 0; j < kolumny; ++j) {
 			p[i][j] = m.p[i][j];
 		}
 	}
@@ -91,6 +89,7 @@ Macierz Macierz::dodaj(Macierz m)
 
 Macierz Macierz::mnoz(Macierz m)
 {
+
 	Macierz mw(wiersze, m.kolumny);
 	for (int i = 0; i < mw.wiersze; i++)
 	{
@@ -101,6 +100,7 @@ Macierz Macierz::mnoz(Macierz m)
 		}
 	}
 	return mw;
+
 }
 
 Macierz Macierz::mnozenieSkalar(int x)
