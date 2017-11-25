@@ -9,6 +9,7 @@ public:
 	~Macierz();
 
 	Macierz dodaj(Macierz m);
+	Macierz mnoz(Macierz m);
 
 	void set();
 	void set(int x, int w, int k);
