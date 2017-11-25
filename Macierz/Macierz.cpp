@@ -6,6 +6,7 @@ using namespace std;
 
 Macierz::Macierz() : wiersze(1), kolumny(1)
 {
+	alokacja();
 	p[0][0] = 0;
 }
 
@@ -49,6 +50,7 @@ Macierz::~Macierz()
 	delete[] p;
 }
 
+//Alokuje pamiêæ pod elementy macierzy
 void Macierz::alokacja()
 {
 	p = new double*[wiersze];
@@ -61,7 +63,15 @@ void Macierz::alokacja()
 
 Macierz Macierz::dodaj(Macierz m)
 {
-	return m;
+	Macierz mw(wiersze, kolumny);
+	for (int i = 0; i < wiersze; i++)
+	{
+		for (int j = 0; j < kolumny; j++)
+		{
+			mw.p[i][j] = p[i][j] + m.p[i][j];
+		}
+	}
+	return mw;
 }
 
 
@@ -78,8 +88,33 @@ void Macierz::set()
 	}
 }
 
-// Ustawia wartoœæ wybranego elementu w Macierzy
-void Macierz::set(int x, int a, int b)
+// Ustawia wartoœæ wybranego elementu w Macierzy lub -1 jeœli nie ma takiego elementu (wstawainy element,
+void Macierz::set(int x, int w, int k)
 {
-	p[a][b] = x;
+	if (w > wiersze || k > kolumny || w < 1 || k < 1)
+		cout << "Nie ma elementu o takim adresie w macierzy" << endl;
+	else
+		p[w][k] = x;
+}
+
+// Zwraca wybrany element macierzy lub -1 jesli nie ma takiego elementu
+int Macierz::get(int w, int k)
+{
+	if (w > wiersze || k > kolumny || w < 1 || k < 1)
+		return -1;
+	else
+		return p[w][k];
+}
+
+//Drukuje macierz na wyjœcie
+void Macierz::drukuj()
+{
+	cout << "Macierz: ";
+	for (int i = 0; i < wiersze; i++)
+	{
+		cout << endl;
+		for (int j = 0; j < kolumny; j++)
+			cout << p[i][j] << " ";
+	}
+	cout << endl << endl;
 }

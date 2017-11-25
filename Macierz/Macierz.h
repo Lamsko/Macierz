@@ -7,13 +7,14 @@ public:
 	Macierz(const Macierz& m);
 	Macierz(Macierz&& m);
 	~Macierz();
+
 	Macierz dodaj(Macierz m);
 
 	void set();
-	void set(int x, int a, int b);
-
+	void set(int x, int w, int k);
 	Macierz get();
-	int get(int a, int b);
+	int get(int w, int k);
+	void drukuj();
 
 private:
 	int wiersze, kolumny;
